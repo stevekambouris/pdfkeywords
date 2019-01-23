@@ -11,15 +11,22 @@ extract_keyword(file, keyword, nbefore = 0L, nafter = 0L)
 
 \item{keyword}{The keyword to look for in the PDF(s).}
 
-\item{nbefore}{The number of words to include before the keyword. The
-default is 0.}
+\item{nbefore}{The number of words to include before the keyword, can be an
+integer zero or greater. The default is 0.}
 
-\item{nafter}{The number of words to include after the keyword. The default
-is 0.}
+\item{nafter}{The number of words to include after the keyword, can be an
+integer zero or greater. The default is 0.}
 }
 \value{
 A data frame with three variables: \code{PDF_file}, \code{PDF_page},
-  and \code{Keyword_extract}.
+  and \code{Keyword_extract}. The number of rows in the data frame will
+  correspond to the number of times that the keyword was found in the PDF(s)
+  searched. If the keyword was not found in any PDFs, there will be no rows
+  in the data frame. If the text extraction function fails for all PDFs
+  specified in the \code{file} argument, NULL will be returned, along with a
+  warning for each of the affected PDF files. If text can be extracted from
+  at least one PDF file, the data frame will be returned, but the warnings
+  for the affected files will still be shown.
 }
 \description{
 \code{extract_keyword} finds all occurrences of a given \code{keyword} in
@@ -28,8 +35,16 @@ each occurrence found. Each row of the data frame is made up of a string
 containing the keyword in its immediate context, the page number of the PDF
 on which the keyword was found, and the file name of the PDF.
 }
+\details{
+\code{extract_keyword} relies on the function \code{pdf_text} from the
+package \code{pdftools} to extract the the text from each PDF and the
+function \code{str_extract_all} from the package \code{stringr} to extract
+the keywords from the PDF text; the rest of the function arranges the output
+into a neat format.
+}
 \examples{
 \dontrun{
 extract_keyword("example.pdf", "foo")
+extract_keyword(c("a.pdf", "b.pdf"), "foo")
 }
 }
