@@ -13,7 +13,8 @@
 #' into a neat format.
 #'
 #' @param file A character vector of the PDF file names to search.
-#' @param keyword The keyword to look for in the PDF(s).
+#' @param keyword The keyword to look for in the PDF(s). The keyword argument
+#' must be atomic and have a length of 1 (typically a character string).
 #' @param nbefore The number of words to include before the keyword, can be an
 #' integer zero or greater. The default is 0.
 #' @param nafter The number of words to include after the keyword, can be an
@@ -38,7 +39,8 @@
 extract_keyword <- function(file, keyword, nbefore = 0L, nafter = 0L) {
 
   # Check that none of the essential arguments are missing.
-  stopifnot(!missing(file), !missing(keyword), nbefore >= 0, nafter >= 0)
+  stopifnot(!missing(file), !missing(keyword), nbefore >= 0, nafter >= 0,
+            is.atomic(keyword), length(keyword) == 1)
 
   # Create a regular expression based on the keyword and number of words to
   # look before and after the keyword.
