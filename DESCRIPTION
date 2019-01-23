@@ -1,11 +1,20 @@
 Package: pdfkeywords
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Extract keywords from PDF documents
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Steven",
+           family = "Kambouris",
+           role = c("aut", "cre"),
+           email = "stevekambouris@fastmail.com")
+Description: Search for keywords within PDF documents and return
+    all found instances by page. Optionally, keywords can be returned in
+    context, extracting a specified number of words before and after the
+    keyword.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    pdftools,
+    stringr,
+    purrr,
+    reshape2
