@@ -18,3 +18,4 @@ Imports:
     stringr,
     purrr,
     reshape2
+RoxygenNote: 6.1.1
