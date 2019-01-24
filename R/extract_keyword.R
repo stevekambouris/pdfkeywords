@@ -84,7 +84,7 @@ extract_keyword <- function(file, keyword, nbefore = 0L, nafter = 0L) {
 
     } else {
       # Show a warning that text could not be extracted.
-      warning(paste0("Text could not be extracted from file ", file[i],". ",
+      warning(paste0("Text could not be extracted from file ", file[i], ". ",
                      "NULL was returned."))
       # Set the entry corresponding to the current PDF file to null.
       out[[i]] <- NULL
