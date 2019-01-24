@@ -9,13 +9,13 @@ extract_keyword(file, keyword, nbefore = 0L, nafter = 0L)
 \arguments{
 \item{file}{A character vector of the PDF file names to search.}
 
-\item{keyword}{The keyword to look for in the PDF(s).}
+\item{keyword}{A character scalar. The keyword to look for in the PDF(s).}
 
-\item{nbefore}{The number of words to include before the keyword, can be an
-integer zero or greater. The default is 0.}
+\item{nbefore}{An integer scalar. The number of words to include before the
+keyword, can be zero or greater. The default is 0.}
 
-\item{nafter}{The number of words to include after the keyword, can be an
-integer zero or greater. The default is 0.}
+\item{nafter}{An integer scalar. The number of words to include after the
+keyword, can be zero or greater. The default is 0.}
 }
 \value{
 A data frame with three variables: \code{PDF_file}, \code{PDF_page},
@@ -37,10 +37,13 @@ on which the keyword was found, and the file name of the PDF.
 }
 \details{
 \code{extract_keyword} relies on the function \code{pdf_text} from the
-package \code{pdftools} to extract the the text from each PDF and the
-function \code{str_extract_all} from the package \code{stringr} to extract
-the keywords from the PDF text; the rest of the function arranges the output
-into a neat format.
+package
+\href{https://cran.r-project.org/web/packages/pdftools/index.html}{pdftools}
+to extract the the text from each PDF and the function
+\code{str_extract_all} from the package
+\href{https://cran.r-project.org/web/packages/stringr/index.html}{stringr}
+to extract the keywords from the PDF text; the rest of the function arranges
+the output into a neat format.
 }
 \examples{
 \dontrun{

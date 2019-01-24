@@ -7,18 +7,20 @@
 #' on which the keyword was found, and the file name of the PDF.
 #'
 #' \code{extract_keyword} relies on the function \code{pdf_text} from the
-#' package \code{pdftools} to extract the the text from each PDF and the
-#' function \code{str_extract_all} from the package \code{stringr} to extract
-#' the keywords from the PDF text; the rest of the function arranges the output
-#' into a neat format.
+#' package
+#' \href{https://cran.r-project.org/web/packages/pdftools/index.html}{pdftools}
+#' to extract the the text from each PDF and the function
+#' \code{str_extract_all} from the package
+#' \href{https://cran.r-project.org/web/packages/stringr/index.html}{stringr}
+#' to extract the keywords from the PDF text; the rest of the function arranges
+#' the output into a neat format.
 #'
 #' @param file A character vector of the PDF file names to search.
-#' @param keyword The keyword to look for in the PDF(s). The keyword argument
-#' must be atomic and have a length of 1 (typically a character string).
-#' @param nbefore The number of words to include before the keyword, can be an
-#' integer zero or greater. The default is 0.
-#' @param nafter The number of words to include after the keyword, can be an
-#' integer zero or greater. The default is 0.
+#' @param keyword A character scalar. The keyword to look for in the PDF(s).
+#' @param nbefore An integer scalar. The number of words to include before the
+#' keyword, can be zero or greater. The default is 0.
+#' @param nafter An integer scalar. The number of words to include after the
+#' keyword, can be zero or greater. The default is 0.
 #'
 #' @return A data frame with three variables: \code{PDF_file}, \code{PDF_page},
 #'   and \code{Keyword_extract}. The number of rows in the data frame will
@@ -38,9 +40,10 @@
 #' }
 extract_keyword <- function(file, keyword, nbefore = 0L, nafter = 0L) {
 
-  # Check that none of the essential arguments are missing.
+  # Check that none of the essential arguments are missing or invalid.
   stopifnot(!missing(file), !missing(keyword), nbefore >= 0, nafter >= 0,
-            is.atomic(keyword), length(keyword) == 1)
+            is.atomic(keyword), length(keyword) == 1, length(nbefore) == 1,
+            length(nafter) == 1)
 
   # Create a regular expression based on the keyword and number of words to
   # look before and after the keyword.
